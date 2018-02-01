@@ -1,0 +1,14 @@
+//批量删除
+var params = getParameterAsText("_selects");
+if (params == null || params == "") {
+	createAlert("请选择要删除的项！");
+} else {
+	var docids = params.split(';');
+	if(docids!=null){
+		for (var i=0; i<docids.length;i++){ 
+			var sql="update tlk_blacklist set ITEM_STATUS='1' where ID = '" + docids[i] + "'";
+			println(sql);
+			updateByDSName("27",sql);	      
+		}
+	}
+}
